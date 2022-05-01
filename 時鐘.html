@@ -41,7 +41,8 @@
       width: 10px;
       height: 10px;
       border-radius: 50%;
-      background: black;
+      border: 2px solid white;
+      background: red;
       position: absolute;
       top: 50%;
       left: 50%;
@@ -51,7 +52,7 @@
     #hour {
       width: 20%;
       height: 6px;
-      background: black;
+      background: #696969;
       position: absolute;
       top: calc(50% - 3px);
       left: 50%;
@@ -61,7 +62,7 @@
     #minute {
       width: 35%;
       height: 6px;
-      background: black;
+      background: #696969;
       position: absolute;
       top: calc(50% - 3px);
       left: 50%;
@@ -69,14 +70,53 @@
     }
 
     #second {
-      width: 35%;
+      width: 40%;
       height: 4px;
       background: red;
       position: absolute;
       top: calc(50% - 2px);
-      left: 50%;
-      transform-origin: left center;
-      /* transition-duration: 1s; */
+      left: 45%;
+      transform-origin: 12.5% center;
+    }
+
+    #horizontalLine::before {
+      content: '';
+      width: 8%;
+      height: 2px;
+      background: lightgray;
+      position: absolute;
+      top: calc(50% - 1px);
+      right: 5%;
+    }
+
+    #horizontalLine::after {
+      content: '';
+      width: 8%;
+      height: 2px;
+      background: lightgray;
+      position: absolute;
+      top: calc(50% - 1px);
+      left: 5%;
+    }
+
+    #verticalLine::before {
+      content: '';
+      width: 2px;
+      height: 8%;
+      background: lightgray;
+      position: absolute;
+      top: 5%;
+      left: calc(50% - 1px);
+    }
+
+    #verticalLine::after {
+      content: '';
+      width: 2px;
+      height: 8%;
+      background: lightgray;
+      position: absolute;
+      bottom: 5%;
+      left: calc(50% - 1px);
     }
   </style>
 </head>
@@ -86,6 +126,8 @@
     <div id="hour"></div>
     <div id="minute"></div>
     <div id="second"></div>
+    <div id="horizontalLine"></div>
+    <div id="verticalLine"></div>
   </div>
 
   <script>
