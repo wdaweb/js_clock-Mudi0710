@@ -15,18 +15,25 @@
     }
 
     body {
-      background: black;
+      background: rgba(255, 252, 252, 1);
+      ;
     }
 
     #clock {
       width: 400px;
       height: 400px;
       border-radius: 50%;
-      background: white;
+      background: rgba(255, 252, 252, 1);
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
+      box-shadow:
+        -10px -10px 20px rgba(255, 255, 255, 1),
+        15px 15px 40px rgba(255, 0, 0, 0.15),
+        inset 10px 10px 40px rgba(255, 0, 0, 0.1),
+        inset -15px -15px 10px rgba(255, 255, 255, 1);
+      filter: drop-shadow(8px, 8px, 1px, #000000);
     }
 
     #clock:after {
@@ -63,12 +70,13 @@
 
     #second {
       width: 35%;
-      height: 6px;
+      height: 4px;
       background: red;
       position: absolute;
-      top: calc(50% - 3px);
+      top: calc(50% - 2px);
       left: 50%;
       transform-origin: left center;
+      /* transition-duration: 1s; */
     }
   </style>
 </head>
