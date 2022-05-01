@@ -42,7 +42,7 @@
     }
 
     #hour {
-      width: 25%;
+      width: 20%;
       height: 6px;
       background: black;
       position: absolute;
@@ -81,7 +81,14 @@
   </div>
 
   <script>
+    const hour = document.getElementById('hour')
 
+    setInterval(() => {
+      const date = new Date()
+      hour.style.transform = `rotate(${date.getHours() * 30 - 90}deg)`
+      minute.style.transform = `rotate(${date.getMinutes() * 6 - 90}deg)`
+      second.style.transform = `rotate(${date.getSeconds() * 6 - 90}deg)`
+    })
   </script>
 
 </body>
