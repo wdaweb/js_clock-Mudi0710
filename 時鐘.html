@@ -17,9 +17,36 @@
       font-family: 'Courier Prime', monospace;
     }
 
-    body {
-      background: rgba(236, 220, 194, 1);
-      ;
+    #bg-color {
+      width: 100vw;
+      height: 100vh;
+      background: rgb(236, 220, 194);
+    }
+
+    #select {
+      float: right;
+    }
+
+    #milktea,
+    #milk,
+    #blackBean {
+      width: 50px;
+      height: 50px;
+      display: inline-block;
+      border: 2px solid white;
+      box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
+    }
+
+    #milktea {
+      background: rgb(236, 220, 194);
+    }
+
+    #milk {
+      background: rgb(236, 236, 243);
+    }
+
+    #blackBean {
+      background: rgb(37, 37, 45);
     }
 
     #clock {
@@ -28,17 +55,21 @@
       border-radius: 50%;
       background: rgb(233, 233, 233);
       position: absolute;
-      top: 50%;
+      top: 40%;
       left: 50%;
       transform: translate(-50%, -50%);
       box-shadow:
+        /* 左上外陰影 */
         -10px -10px 50px rgba(255, 255, 255, 0.7),
+        /* 右下外陰影 */
         15px 15px 40px rgb(182, 161, 129),
+        /* 左上內陰影 */
         inset 15px 15px 30px rgba(236, 220, 194, 0.9),
+        /* 右下內陰影 */
         inset -15px -15px 10px rgba(255, 255, 255, 0.5);
     }
 
-    #clock:after {
+    #clock::after {
       content: '';
       width: 10px;
       height: 10px;
@@ -54,7 +85,7 @@
     #hour {
       width: 20%;
       height: 6px;
-      background: #696969;
+      background: rgb(105, 105, 105);
       position: absolute;
       top: calc(50% - 3px);
       left: 50%;
@@ -64,7 +95,7 @@
     #minute {
       width: 35%;
       height: 6px;
-      background: #696969;
+      background: rgb(105, 105, 105);
       position: absolute;
       top: calc(50% - 3px);
       left: 50%;
@@ -125,7 +156,7 @@
       width: 600px;
       height: 80px;
       position: absolute;
-      top: 78%;
+      top: 75%;
       left: 50%;
       transform: translate(-50%, -50%);
       text-align: center;
@@ -134,11 +165,12 @@
     #digitHour,
     #digitMinute,
     #digitSecond,
-    #digitP {
+    #digitP1,
+    #digitP2 {
       width: 100px;
       height: 80px;
       display: inline;
-      color: #696969;
+      color: rgb(105, 105, 105);
       font-size: 72px;
       line-height: 80px;
     }
@@ -147,7 +179,7 @@
       width: 400px;
       height: 60px;
       position: absolute;
-      top: 85%;
+      top: 82%;
       left: 50%;
       transform: translate(-50%, -50%);
       text-align: center;
@@ -160,7 +192,7 @@
       width: 100px;
       height: 60px;
       display: inline;
-      color: #696969;
+      color: rgb(105, 105, 105);
       font-size: 24px;
       line-height: 60px;
     }
@@ -168,25 +200,32 @@
 </head>
 
 <body>
-  <div id="clock">
-    <div id="hour"></div>
-    <div id="minute"></div>
-    <div id="second"></div>
-    <div id="horizontalLine"></div>
-    <div id="verticalLine"></div>
-  </div>
-  <div id="digit">
-    <span id="digitHour"></span>
-    <span id="digitP">:</span>
-    <span id="digitMinute"></span>
-    <span id="digitP">:</span>
-    <span id="digitSecond"></span>
-  </div>
-  <div id="calendar">
-    <span id="day"></span>
-    <span id="month"></span>
-    <span id="calendarP">,</span>
-    <span id="year"></span>
+  <div id="bg-color">
+    <div id="select">
+      <div id="milktea" title="MilkTea"></div>
+      <div id="milk" title="Milk"></div>
+      <div id="blackBean" title="BlackBean"></div>
+    </div>
+    <div id="clock">
+      <div id="hour"></div>
+      <div id="minute"></div>
+      <div id="second"></div>
+      <div id="horizontalLine"></div>
+      <div id="verticalLine"></div>
+    </div>
+    <div id="digit">
+      <span id="digitHour"></span>
+      <span id="digitP1">:</span>
+      <span id="digitMinute"></span>
+      <span id="digitP2">:</span>
+      <span id="digitSecond"></span>
+    </div>
+    <div id="calendar">
+      <span id="day"></span>
+      <span id="month"></span>
+      <span id="calendarP">,</span>
+      <span id="year"></span>
+    </div>
   </div>
 
   <script>
@@ -240,6 +279,82 @@
       }
       year.innerText = `${date.getFullYear()}`
     }, 1000)
+
+
+    const milktea = document.getElementById('milktea')
+    const milk = document.getElementById('milk')
+    const blackBean = document.getElementById('blackBean')
+    const bgColor = document.getElementById('bg-color')
+    const clock = document.getElementById('clock')
+    const digitP1 = document.getElementById('digitP1')
+    const digitP2 = document.getElementById('digitP2')
+    const calendarP = document.getElementById('calendarP')
+
+    milktea.onclick = () => {
+      hour.style.backgroundColor = 'rgb(105, 105, 105)'
+      minute.style.backgroundColor = 'rgb(105, 105, 105)'
+      digitHour.style.color = 'rgb(105, 105, 105)'
+      digitMinute.style.color = 'rgb(105, 105, 105)'
+      digitSecond.style.color = 'rgb(105, 105, 105)'
+      digitP1.style.color = 'rgb(105, 105, 105)'
+      digitP2.style.color = 'rgb(105, 105, 105)'
+      day.style.color = 'rgb(105, 105, 105)'
+      month.style.color = 'rgb(105, 105, 105)'
+      year.style.color = 'rgb(105, 105, 105)'
+      calendarP.style.color = 'rgb(105, 105, 105)'
+
+      bgColor.style.backgroundColor = 'rgb(236, 220, 194)'
+      clock.style.backgroundColor = 'rgb(233, 233, 233)'
+      clock.style.boxShadow = `
+      -10px -10px 50px rgba(255, 255, 255, 0.7),
+      15px 15px 40px rgb(182, 161, 129),
+      inset 15px 15px 30px rgba(236, 220, 194, 0.9),
+      inset -15px -15px 10px rgba(255, 255, 255, 0.5)`
+    }
+
+    milk.onclick = () => {
+      hour.style.backgroundColor = 'rgb(105, 105, 105)'
+      minute.style.backgroundColor = 'rgb(105, 105, 105)'
+      digitHour.style.color = 'rgb(105, 105, 105)'
+      digitMinute.style.color = 'rgb(105, 105, 105)'
+      digitSecond.style.color = 'rgb(105, 105, 105)'
+      digitP1.style.color = 'rgb(105, 105, 105)'
+      digitP2.style.color = 'rgb(105, 105, 105)'
+      day.style.color = 'rgb(105, 105, 105)'
+      month.style.color = 'rgb(105, 105, 105)'
+      year.style.color = 'rgb(105, 105, 105)'
+      calendarP.style.color = 'rgb(105, 105, 105)'
+
+      bgColor.style.backgroundColor = 'rgb(236, 236, 243)'
+      clock.style.backgroundColor = 'rgb(236, 236, 243)'
+      clock.style.boxShadow = `
+      -10px -10px 50px rgba(250, 250, 252, 1),
+      15px 15px 30px rgb(215, 215, 233),
+      inset 15px 15px 30px rgb(215, 215, 233),
+      inset -15px -15px 10px rgba(246, 246, 250, 0.5)`
+    }
+
+    blackBean.onclick = () => {
+      hour.style.backgroundColor = 'rgb(236, 236, 243)'
+      minute.style.backgroundColor = 'rgb(236, 236, 243)'
+      digitHour.style.color = 'rgb(236, 236, 243)'
+      digitMinute.style.color = 'rgb(236, 236, 243)'
+      digitSecond.style.color = 'rgb(236, 236, 243)'
+      digitP1.style.color = 'rgb(236, 236, 243)'
+      digitP2.style.color = 'rgb(236, 236, 243)'
+      day.style.color = 'rgb(236, 236, 243)'
+      month.style.color = 'rgb(236, 236, 243)'
+      year.style.color = 'rgb(236, 236, 243)'
+      calendarP.style.color = 'rgb(236, 236, 243)'
+
+      bgColor.style.backgroundColor = 'rgb(37, 37, 45)'
+      clock.style.backgroundColor = 'rgb(37, 37, 45)'
+      clock.style.boxShadow = `
+      -10px -10px 20px rgba(42, 42, 49, 1),
+      15px 15px 20px rgb(30, 30, 36),
+      inset 15px 15px 20px rgb(30, 30, 36),
+      inset -15px -15px 20px rgba(45, 45, 53, 1)`
+    }
   </script>
 
 </body>
