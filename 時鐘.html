@@ -123,9 +123,9 @@
 
     #digit {
       width: 600px;
-      height: 150px;
+      height: 80px;
       position: absolute;
-      top: 80%;
+      top: 78%;
       left: 50%;
       transform: translate(-50%, -50%);
       text-align: center;
@@ -134,13 +134,35 @@
     #digitHour,
     #digitMinute,
     #digitSecond,
-    #p {
+    #digitP {
       width: 100px;
-      height: 150px;
+      height: 80px;
       display: inline;
       color: #696969;
       font-size: 72px;
-      line-height: 150px;
+      line-height: 80px;
+    }
+
+    #calendar {
+      width: 400px;
+      height: 60px;
+      position: absolute;
+      top: 85%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+    }
+
+    #day,
+    #month,
+    #year,
+    #calendarP {
+      width: 100px;
+      height: 60px;
+      display: inline;
+      color: #696969;
+      font-size: 24px;
+      line-height: 60px;
     }
   </style>
 </head>
@@ -155,10 +177,16 @@
   </div>
   <div id="digit">
     <span id="digitHour"></span>
-    <span id="p">:</span>
+    <span id="digitP">:</span>
     <span id="digitMinute"></span>
-    <span id="p">:</span>
+    <span id="digitP">:</span>
     <span id="digitSecond"></span>
+  </div>
+  <div id="calendar">
+    <span id="day"></span>
+    <span id="month"></span>
+    <span id="calendarP">,</span>
+    <span id="year"></span>
   </div>
 
   <script>
@@ -168,15 +196,22 @@
     const digitHour = document.getElementById('digitHour')
     const digitMinute = document.getElementById('digitMinute')
     const digitSecond = document.getElementById('digitSecond')
+    const day = document.getElementById('day')
+    const month = document.getElementById('month')
+    const year = document.getElementById('year')
 
     setInterval(() => {
       const date = new Date()
-      const nowHou = new Date().getHours()
-      const nowMin = new Date().getMinutes()
-      const nowSec = new Date().getSeconds()
+
+      // 處理指針
       hour.style.transform = `rotate(${date.getHours() * 30 - 90}deg)`
       minute.style.transform = `rotate(${date.getMinutes() * 6 - 90}deg)`
       second.style.transform = `rotate(${date.getSeconds() * 6 - 90}deg)`
+
+      // 處理數位時鐘
+      const nowHou = new Date().getHours()
+      const nowMin = new Date().getMinutes()
+      const nowSec = new Date().getSeconds()
       if (nowHou < 10) {
         digitHour.innerText = `0${date.getHours()}`
       } else {
@@ -192,6 +227,18 @@
       } else {
         digitSecond.innerText = `${date.getSeconds()}`
       }
+
+      // 處理年月日
+      const nowMon = new Date().getMonth()
+      const stringMon = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+
+      day.innerText = `${date.getDate()}`
+      for (const m in stringMon) {
+        if (m == nowMon) {
+          month.innerText = stringMon[m]
+        }
+      }
+      year.innerText = `${date.getFullYear()}`
     }, 1000)
   </script>
 
